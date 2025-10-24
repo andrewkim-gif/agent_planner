@@ -4,23 +4,66 @@
 
 ## 작업 프로세스
 
-### Step 1: 프로젝트 자동 분석
-먼저 현재 프로젝트의 구조와 문서를 파악하세요:
+### Step 1: GitHub를 통한 프로젝트 철저 분석
 
-1. **파일 탐색**
-   - README.md 찾아서 읽기
-   - docs/ 폴더 확인
-   - 기존 PRD 문서 찾기 (*.prd.md, *requirements*.md)
-   - package.json, requirements.txt 등으로 기술 스택 파악
+**GitHub 도구를 활용하여 다음 작업을 수행하세요:**
 
-2. **컨텍스트 요약**
-   읽은 내용을 바탕으로 간단히 정리:
+1. **저장소 기본 정보 파악**
+   ```
+   - github_search_code: "README.md"
+   - github_file_contents: 루트의 README.md 읽기
+   - github_search_code: "CONTRIBUTING.md"
+   ```
+
+2. **문서 수집**
+   ```
+   - github_search_code: "path:docs/ .md"
+   - github_search_code: "product.md OR vision.md OR strategy.md"
+   - github_search_code: "architecture.md OR tech-stack.md"
+   - github_file_contents: 발견된 주요 문서들 모두 읽기
+   ```
+
+3. **기존 PRD 및 명세 문서 수집**
+   ```
+   - github_search_code: "*.prd.md"
+   - github_search_code: "requirements.md OR specs.md"
+   - github_search_code: "path:specs/ OR path:requirements/"
+   - github_file_contents: 기존 PRD 2-3개 읽어서 스타일 파악
+   ```
+
+4. **기술 스택 파악**
+   ```
+   - github_file_contents: "package.json" (Node.js)
+   - github_file_contents: "requirements.txt" (Python)
+   - github_file_contents: "pom.xml" (Java)
+   - github_file_contents: "go.mod" (Go)
+   - github_search_code: "Dockerfile"
+   ```
+
+5. **사용자 피드백 및 요구사항 파악**
+   ```
+   - github_list_issues: state=open, sort=comments (많이 언급된 이슈)
+   - github_list_issues: labels="feature-request,enhancement"
+   - github_list_issues: state=closed, sort=updated (최근 해결된 이슈)
+   ```
+
+6. **개발 방향성 파악**
+   ```
+   - github_list_pull_requests: state=merged, sort=updated (최근 병합된 PR)
+   - github_list_commits: 최근 커밋 메시지 확인
+   ```
+
+7. **컨텍스트 요약**
+   수집한 모든 정보를 바탕으로 정리:
    ```
    📊 프로젝트 분석 결과:
-   - 제품: [제품명 및 설명]
-   - 주요 사용자: [타겟 유저]
-   - 기술 스택: [주요 기술]
-   - 기존 PRD 스타일: [발견한 패턴]
+   - 저장소: [owner/repo]
+   - 제품: [제품명 및 목적]
+   - 주요 사용자: [타겟 유저 - 문서 및 이슈에서 파악]
+   - 기술 스택: [실제 파일에서 확인한 기술]
+   - 활성 이슈: [주요 feature request 요약]
+   - 기존 PRD 스타일: [발견한 작성 패턴]
+   - 최근 개발 방향: [PR과 커밋에서 파악한 트렌드]
    ```
 
 ### Step 2: 사용자에게 정보 질문
